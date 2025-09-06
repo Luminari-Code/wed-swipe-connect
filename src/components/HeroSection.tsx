@@ -5,9 +5,10 @@ import heroImage from '@/assets/hero-wedding.jpg';
 
 interface HeroSectionProps {
   onGetStarted: () => void;
+  onVendorSignup: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onVendorSignup }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -82,6 +83,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
             <Button 
               variant="romantic" 
               size="lg"
+              onClick={onVendorSignup}
               className="text-lg px-8 py-6"
             >
               <Users className="w-5 h-5 mr-2" />

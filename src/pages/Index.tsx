@@ -3,8 +3,9 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import CategoryGrid from '@/components/CategoryGrid';
 import SwipeDemo from '@/components/SwipeDemo';
+import VendorOnboarding from '@/components/VendorOnboarding';
 
-type AppState = 'hero' | 'categories' | 'swipe';
+type AppState = 'hero' | 'categories' | 'swipe' | 'vendor';
 
 const Index = () => {
   const [currentState, setCurrentState] = useState<AppState>('hero');
@@ -18,14 +19,22 @@ const Index = () => {
     setCurrentState('swipe');
   };
 
+  const handleVendorMode = () => {
+    setCurrentState('vendor');
+  };
+
   const handleBackToCategories = () => {
     setCurrentState('categories');
+  };
+
+  const handleBackToHero = () => {
+    setCurrentState('hero');
   };
 
   const renderContent = () => {
     switch (currentState) {
       case 'hero':
-        return <HeroSection onGetStarted={handleGetStarted} />;
+        return <HeroSection onGetStarted={handleGetStarted} onVendorSignup={handleVendorMode} />;
       
       case 'categories':
         return (
@@ -53,8 +62,11 @@ const Index = () => {
           </>
         );
       
+      case 'vendor':
+        return <VendorOnboarding onBackToHero={handleBackToHero} />;
+      
       default:
-        return <HeroSection onGetStarted={handleGetStarted} />;
+        return <HeroSection onGetStarted={handleGetStarted} onVendorSignup={handleVendorMode} />;
     }
   };
 
